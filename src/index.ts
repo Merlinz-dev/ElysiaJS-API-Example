@@ -30,14 +30,6 @@ const app = new Elysia()
       tags: ['Api_Get']
     }
   })
-  // .post("/api/v1/auth/Login", async ({ body }: { body: dataTypes_POST }) => {
-  //   const username = body.username;
-  //   const password = body.password;
-  //   const result = `Your Username is ${username} and Your Password is ${password}`
-  //   return result
-  // }, {
-  //   type: 'json',
-  // })
   .post("/api/v1/auth/Login", async ({ body }: { body: dataTypes_POST }) => {
     const username = body.username;
     const password = body.password;
@@ -69,8 +61,6 @@ const app = new Elysia()
     type: 'json',
   })
   .listen(3000);
-
-
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
 );
