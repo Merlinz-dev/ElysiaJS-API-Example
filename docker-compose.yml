@@ -1,0 +1,99 @@
+# version: "3.8"
+
+services:
+  app_port5000:
+    container_name: elysia-api-port5000
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ${Assy_Image}
+        target: /app/Asset/Assy/Image
+      - type: bind
+        source: ${Assy_DocumentFile}
+        target: /app/Asset/Assy/DocumentFIle
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+    restart: always
+
+  app_port5100:
+    container_name: elysia-api-port5100
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5100:5100"
+    environment:
+      - PORT=5100
+    restart: always
+
+  app_port5001:
+    container_name: elysia-api-port5001
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+    restart: always
+
+  app_port5002:
+    container_name: elysia-api-port5002
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+    environment:
+      - PORT=5002
+    restart: always
+
+  app_port5003:
+    container_name: elysia-api-port5003
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ${Employee_Setting}
+        target: /app/Asset/Employee/Settings
+    ports:
+      - "5003:5003"
+    environment:
+      - PORT=5003
+    restart: always
+
+  app_port5004:
+    container_name: elysia-api-port5004
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5004:5004"
+    environment:
+      - PORT=5004
+    restart: always
+
+  app_port5008:
+    container_name: elysia-api-port5008
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ${Assy_Image}
+        target: /app/Asset/Assy/Image
+      - type: bind
+        source: ${Assy_DocumentFile}
+        target: /app/Asset/Assy/DocumentFIle
+    ports:
+      - "5008:5008"
+    environment:
+      - PORT=5008
+    env_file:
+      - .env
+    restart: always
