@@ -1,5 +1,7 @@
 import { Elysia } from "elysia";
 import { swagger } from '@elysiajs/swagger'
+import { dataTypes_POST } from "./dataTypes"
+
 
 const app = new Elysia()
   .use(swagger({
@@ -20,13 +22,51 @@ const app = new Elysia()
       tags: ['Api_Get']
     }
   })
-  .get("/GetParams/:text", async ({ params }: {params: { text: string }}) => {
+  .get("/api/v1/GetParams/:text", async ({ params }: { params: { text: string } }) => {
     const data = `Test Params ${params.text}`
     return data
   }, {
     detail: {
       tags: ['Api_Get']
     }
+  })
+  // .post("/api/v1/auth/Login", async ({ body }: { body: dataTypes_POST }) => {
+  //   const username = body.username;
+  //   const password = body.password;
+  //   const result = `Your Username is ${username} and Your Password is ${password}`
+  //   return result
+  // }, {
+  //   type: 'json',
+  // })
+  .post("/api/v1/auth/Login", async ({ body }: { body: dataTypes_POST }) => {
+    const username = body.username;
+    const password = body.password;
+    const result = `Your Username is ${username} and Your Password is ${password}`
+    return result
+  }, {
+    detail: {
+      tags: ['Api_Post'],
+      requestBody: {
+        description: "Example Body for Login",
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                username: { type: "string" },
+                password: { type: "number" },
+              },
+              required: ["username", "password"],
+            },
+            example: {
+              username: "Test_UserName",
+              password: 123456,
+            }
+          }
+        }
+      },
+    },
+    type: 'json',
   })
   .listen(3000);
 
