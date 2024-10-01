@@ -33,8 +33,8 @@ const app = new Elysia()
   .post("/api/v1/auth/Login", async ({ body }: { body: dataTypes_POST }) => {
     const username = body.username;
     const password = body.password;
-    const result = `Your Username is ${username} and Your Password is ${password}`
-    return result
+    const result = `Your Username is ${username} and Your Password is ${password}`;
+    return result;
   }, {
     detail: {
       tags: ['Api_Post'],
@@ -49,14 +49,18 @@ const app = new Elysia()
                 password: { type: "number" },
               },
               required: ["username", "password"],
+              // example: {
+              //   username: "Test_UserName",
+              //   password: 123456,
+              // }
             },
             example: {
               username: "Test_UserName",
-              password: 123456,
+              password: 123456
             }
           }
         }
-      },
+      }
     },
     type: 'json',
   })
